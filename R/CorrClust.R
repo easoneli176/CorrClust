@@ -17,9 +17,20 @@ CorrClust<-function(data,k){
 
   for (i in 1:numvars){
     for(j in i:numvars){
-      if(abs(cortab[i,j])>=k)
+      if(abs(cortab[i,j])>=k & corclust[j,]>corclust[,i])
       {corclust[j,]<-corclust[i,]}
+      if(abs(cortab[i,j])>=k)
+      {corclust[i,]<-corclust[j,]}
     }
+    #if a variable was reassigned after other variables had been clustered with it, need to ensure those go to the right cluster
+    if(corclust[i,]<i){
+      for(j in i:numvars){
+        if(corclust[j,] = i){
+          corclust[j,]<-corclust[i,]
+        }
+      }
+    }
+
   }
   corclust
 }
