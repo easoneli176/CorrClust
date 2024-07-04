@@ -15,8 +15,10 @@ CorrClust2<-function(data,k){
 
   for (i in 1:numvars){
     for(j in i:numvars){
-      if(abs(data[i,j])>=k)
+      if(abs(data[i,j])>=k & corclust[j,]>corclust[,i])
       {corclust[j,]<-corclust[i,]}
+      if(abs(data[i,j])>=k)
+      {corclust[i,]<-corclust[j,]}
     }
   }
   corclust
